@@ -1,0 +1,72 @@
+
+@baseUrl=http://localhost:3000/api
+
+
+### SignUp
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Mozhgan",
+  "email": "mozhgan@example.com",
+  "password": "123456",
+  "role": "Moshtari"
+}
+
+###
+
+### Login
+# @name Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "mozhgan@example.com",
+  "password": "123456"
+}
+
+###
+
+@authToken = {{Login.response.body.accessToken}}
+
+### Me
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{authToken}}
+
+###
+
+### Logout
+GET {{baseUrl}}/auth/logout
+Authorization: Bearer {{authToken}}
+
+###
+
+### Get All Users 
+GET {{baseUrl}}/users
+Authorization: Bearer {{authToken}}
+
+###
+
+### Get User by ID 
+GET {{baseUrl}}/users/30ceaf7b-0733-44ce-bacf-32f413dea980
+Authorization: Bearer {{authToken}}
+
+###
+
+### Update User
+PUT {{baseUrl}}/users/30ceaf7b-0733-44ce-bacf-32f413dea980
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Mozhgan Edited",
+  "email": "mozhgan-edited@example.com",
+  "role": "Amlak"
+}
+
+###
+
+### Delete User 
+DELETE {{baseUrl}}/users/30ceaf7b-0733-44ce-bacf-32f413dea980
+Authorization: Bearer {{authToken}}
+
